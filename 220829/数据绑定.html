@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数据绑定</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+</head>
+<!--数据绑定
+单向绑定： v-bind:属性名="属性值"  简写为：属性名=“属性值”
+双向绑定： v-model:属性名=“属性值”  简写为：v-model=“属性值”  不仅可以在控制台输入值改变页面的值，数据还可以从用户输入传到控制台改变控制台的值，而单项绑定智能控制前者 -->
+<!--v-model只能用于表单类元素，也就是输入元素（input 多选框 单选框 等）-->
+
+<body>
+    <div id="root">
+        单项绑定：<input type="text" v-bind:value="name"><br/> 双向绑定：
+        <input type="text" v-model:value="name">
+    </div>
+
+    <script type="text/javascript">
+        Vue.config.productionTip = false;
+        new Vue({
+            el: "#root",
+            data: {
+                name: 'jack',
+            }
+        });
+    </script>
+</body>
+
+</html>
