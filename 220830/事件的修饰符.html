@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>事件的修饰符</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!--事件的修饰符
+        1.prevent 阻止默认行为
+        2.stop 阻止事件冒泡
+        3.once 事件只触发一次
+        4.capture 使用事件的捕获模式
+        5.self 只有当前的event.target是当前操作的元素才触发事件
+        6.passive 事件的默认行为立即执行，无需等待事件回顾执行完毕
+    -->
+    <style>
+        .div1 {
+            width: 100px;
+            height: 50px;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到学校{{name}}</h2>
+        <!--阻止默认行为 .prevent-->
+        <a href="http://www.baidu.com" v-on:click.prevent="showInfo">点我提示信息</a>
+        <!--当点击链接时，出现指定时事件后跳转到链接去，而跳转链接是a标签的默认行为，要去掉这种默认行为-->
+        <br/><br/><br/>
+        <!--阻止事件冒泡 .stop-->
+        <div v-on:click="showInfo" class="div1">
+            <button v-on:click.stop="showInfo">点我提示信息</button>
+        </div>
+        <br/><br/><br/>
+        <!--事件支触发一次-->
+        <button v-on:click.once="showInfo">点我提示信息</button>
+    </div>
+    <script>
+        //完成当点击按钮时，弹出窗口
+        new Vue({
+            el: "#root",
+            data: {
+                name: "尚硅谷"
+            },
+            methods: {
+                showInfo(event) { //形参
+                    // event.preventDefault();//去掉这种默认行为方法一
+                    //方法二：加在上面事件之后.prevent  事件的修饰符
+                    alert("同学你好");
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

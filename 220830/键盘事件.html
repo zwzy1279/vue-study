@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>键盘事件</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!--键盘事件keydown keyup
+    按键事件修饰符enter delete esc space tab up down left right
+
+系统修饰键（特殊）ctrl alt shift meta
+1.配合keyup使用：按下修饰键的同时，再按下其他键，然后是放其他键，事件才被触发
+2.配合keydown使用：正常触发事件
+
+Vue中未提供别名的按键，可以使用按键原始的key值去绑定，但注意要转成kebab-case(短横线命名)-->
+</head>
+
+<body>
+    <div id="root">
+        <h2>欢迎来到学校{{name}}</h2>
+        <input type="text" v-on:keyup.right="showInfo">
+        <input type="text" v-on:keyup.ctrl="showInfo">
+        <input type="text" v-on:keyup.caps-lock="showInfo">
+    </div>
+    <script>
+        //完成当点击按钮时，弹出窗口
+        new Vue({
+            el: "#root",
+            data: {
+                name: "尚硅谷"
+            },
+            methods: {
+                showInfo() {
+                    alert("同学你好");
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>计算属性</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!--计算属性vue中认为data里的数据为属性
+    控制台获取data里的数据  vm._data
+    计算属性写在computed-->
+</head>
+
+<body>
+    <div id="root">
+        姓：<input type="text" v-model:value="firstName"><br/><br/> 名：
+        <input type="text" v-model:value="lastName"><br/><br/>
+        <span>{{fullName}}</span><br/><br/>
+        <!--小猪佩奇-->
+
+        <span>{{fullName}}</span><br/><br/>
+        <span>{{fullName}}</span><br/><br/>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                firstName: "张",
+                lastName: "三"
+            },
+            computed: {
+                /* fullName: {
+                     //get()有什么用，当读取到fullName时，get()就会被调用，其返回值就作为fullName的值
+                     //get()什么时候调用，初次读取fullName时或者所依赖的数据发生变化时
+                     get() {
+                         console.log("get被调用");
+                         // return '小猪佩奇';
+                         //报错，因为firstName是data里的属性 return firstName + lastName;
+                         console.log(this); //get里的this 是vue
+                         //而我们在vue里面能够读取到firstName lastName,所以在computed我们可以通过this拿到firstName lastName
+                         return this.firstName + this.lastName;
+                     },
+                     //set(value) 当fullName的值被修改时，value的值就是fullName所改成的值
+                     set(value) {
+                         console.log(value);
+                     }
+                 }*/
+
+                //简写 
+                fullName: function() {
+                    //这里的function相当于get()
+                    console.log("get被调用");
+                    // return '小猪佩奇';
+                    //报错，因为firstName是data里的属性 return firstName + lastName;
+                    console.log(this); //get里的this 是vue
+                    //而我们在vue里面能够读取到firstName lastName,所以在computed我们可以通过this拿到firstName lastName
+                    return this.firstName + this.lastName;
+
+                }
+            }
+
+        })
+    </script>
+</body>
+
+</html>
