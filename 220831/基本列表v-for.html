@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基本列表v-for</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!--v-for用于
+    1.用于展示列表数据
+2.语法 v-for="(item,index) in xxx"   :key="yyy"
+xxx是指对象，yyy是唯一的东西即可
+3.可遍历：数组，对象，字符串（用的少），指定次数（用的少）-->
+</head>
+
+<body>
+    <div id="root">
+        <ul>
+            <li v-for="(a,b) in Person" :key="id">
+                <!--{{a}}是Person里所有数据
+                {{b}}是Person里的数组下标-->
+                {{a.name}}-{{a.age}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(a,b) in car">
+                <!--{{a}}是car属性的属性值
+                {{b}}是car属性名-->
+                {{b}}-{{a}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(a2,b2) of str">
+                <!--{{a}}是str的每个字母
+                {{b}}是str的数组下标-->
+                {{b2}}-{{a2}}
+            </li>
+        </ul>
+        <ul>
+            <li v-for="(a2,b2) of 5">
+                <!--{{a}}是从1开始的数字
+                {{b}}是数组下标-->
+                {{b2}}-{{a2}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                Person: [{
+                    id: "001",
+                    name: "张三",
+                    age: 18
+                }, {
+                    id: '002',
+                    name: "老刘",
+                    age: 19
+                }, {
+                    id: '003',
+                    name: '王五',
+                    age: 20
+                }, ],
+                car: {
+                    name: '奥迪',
+                    price: "70万",
+                },
+                str: "holiday",
+            },
+
+
+        })
+    </script>
+</body>
+
+</html>

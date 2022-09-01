@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>条件渲染</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <!--什么是条件渲染v-if v-else-if v-show,当条件为true时，显示内容
+    v-if="表达式"
+    1.v-if
+    适用于切换频率较低的场景
+特点：不展示的dom元素直接移除
+注意：v-if可以和v-else-if,v-else一起使用，但要求结构不能被打断
+2.v-show
+适用于切换频率较高的场景
+特点：不展示的dom元素未被移除，仅仅是被隐藏掉
+3.使用v-if时，元素可能无法获取到，而使用v-show一定可以获取到-->
+</head>
+
+<body>
+    <div id="root">
+        <span>{{n}}</span>
+        <button v-on:click="n++">点我n加一</button>
+        <div v-show="false">我是一个盒子</div>
+        <!--一定要new Vue才能使用-->
+        <div v-if="false">我是第二个盒子</div>
+
+        <br/>
+        <h3 v-if="n===1">n=1</h3>
+        <h3 v-else-if="n===2">n=2</h3>
+        <h3 v-else-if="n===3">n=3</h3>
+        <h3 v-else>n为其他数字</h3>
+
+        <!--如果有多个条件是一样的，为避免重复写v-if="",可以在其外面添加template,不影响其整体结构-->
+        <template v-if="n===4">
+            <h2>n=4</h2>
+            <h3>n=4</h3>
+            <h4>n=4</h4>
+        </template>
+    </div>
+    <script>
+        new Vue({
+            el: "#root",
+            data: {
+                n: 0,
+            },
+
+        })
+    </script>
+</body>
+
+</html>

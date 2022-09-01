@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>绑定样式</title>
+    <script type="text/javascript" src="js/vue.js"></script>
+    <style>
+        .basic {
+            width: 300px;
+            height: 200px;
+            border: 1px solid #999;
+        }
+        
+        .normal {
+            background: skyblue;
+        }
+        
+        .happy {
+            background: pink;
+        }
+        
+        .sad {
+            background: gray;
+        }
+    </style>
+    <!--绑定样式
+1.class样式
+v-bind:class="xxx" xxx可以是字符串 数组 对象
+字符串写法适用于样式类名不确定时，要动态获取
+数组写法适用于要绑定多个样式，类名确定时，个数确定时，但不知道用不用
+对象写法适用于也要绑定多个样式，个数不确定，类名也不确定
+2.style样式
+v-bind:style="{fontSize:xxx}",其中xxx是动态的
+v-bind:style="[a,b]",其中a,b是样式对象
+-->
+</head>
+
+<body>
+    <div id="root">
+        <!--绑定class样式，字符串写法，适用于，样式类名不确定，需要动态操作-->
+        <div class="basic" v-bind:class="a" v-on:click="changeMood">{{name}}</div>
+
+        <!--绑定class样式，数组写法，适用于要绑定的样式个数不确定时，名字不确定时-->
+        <div class="basic" v-bind:class="arr2">{{name}}</div>
+
+        <!--绑定class样式，对象写法，适用于要绑定的样式个数确定时，名字确定时-->
+        <div class="basic" v-bind:class="{happy:true}">{{name}}</div>
+
+        <!--控制样式 对象写法-->
+        <div class="basic" v-bind:style="styleObj">控制样式</div>
+        <!--控制样式 数组写法-->
+        <div class="basic" v-bind:style="styleArr">控制样式</div>
+    </div>
+    <script>
+        const vm = new Vue({
+            el: "#root",
+            data: {
+                name: '今天的心情颜色',
+                a: "normal",
+                arr2: "['happy','sad','normal']",
+                styleObj: {
+                    fontSize: '40px',
+                    color: 'red',
+
+                },
+                styleArr: [{
+                    backgroundColor: 'blue'
+                }]
+            },
+            methods: {
+                changeMood() {
+                    // this.a = "happy";
+                    const arr = ["normal", "happy", "sad"];
+                    const index = Math.floor(Math.random() * 3); //随机生成0-2的数字
+                    console.log(index);
+                    this.a = arr[index];
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
